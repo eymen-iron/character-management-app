@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - db-data:/app/prisma/data
+    environment:
+      - DATABASE_URL=file:/app/prisma/data/dev.db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        GRAPHQL_URL: http://backend:4000/graphql
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - GRAPHQL_URL=http://backend:4000/graphql
+
+volumes:
+  db-data:

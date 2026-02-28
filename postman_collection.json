@@ -1,0 +1,184 @@
+{
+  "info": {
+    "name": "Character Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000/graphql"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get All Characters (Page 1)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        image\n        status\n        gender\n        description\n      }\n      pagination {\n        total\n        page\n        limit\n        totalPages\n        hasNext\n        hasPrev\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 20 }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Get Page 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        limit\n        totalPages\n        hasNext\n        hasPrev\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 2, \"limit\": 20 }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Filter by Status (ALIVE)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"status\": \"ALIVE\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Filter by Status (DEAD)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"status\": \"DEAD\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Filter by Gender (FEMALE)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"gender\": \"FEMALE\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Search by Name (Rick)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n        description\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"search\": \"Rick\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Combined (ALIVE + MALE + page 2)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n        hasPrev\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 2, \"limit\": 10 },\n  \"filter\": { \"status\": \"ALIVE\", \"gender\": \"MALE\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "All Filters (ALIVE + FEMALE + Smith)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        image\n        status\n        gender\n        description\n      }\n      pagination {\n        total\n        page\n        limit\n        totalPages\n        hasNext\n        hasPrev\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"status\": \"ALIVE\", \"gender\": \"FEMALE\", \"search\": \"Smith\" }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Multi Status (ALIVE + DEAD)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"status\": [\"ALIVE\", \"DEAD\"] }\n}"
+          }
+        }
+      }
+    },
+    {
+      "name": "Multi Gender (MALE + FEMALE)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}", "host": ["{{baseUrl}}"] },
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query GetCharacters($pagination: PaginationInput, $filter: CharacterFilterInput) {\n  characters(pagination: $pagination, filter: $filter) {\n    success\n    message\n    data {\n      items {\n        id\n        name\n        status\n        gender\n      }\n      pagination {\n        total\n        page\n        totalPages\n        hasNext\n      }\n    }\n  }\n}",
+            "variables": "{\n  \"pagination\": { \"page\": 1, \"limit\": 10 },\n  \"filter\": { \"gender\": [\"MALE\", \"FEMALE\"] }\n}"
+          }
+        }
+      }
+    }
+  ]
+}

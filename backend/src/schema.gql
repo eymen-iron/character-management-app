@@ -1,0 +1,59 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Character {
+  id: Int!
+  name: String!
+  image: String!
+  status: Status!
+  gender: Gender!
+  description: String!
+}
+
+enum Status {
+  ALIVE
+  DEAD
+  UNKNOWN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  UNKNOWN
+}
+
+type PaginationMeta {
+  total: Int!
+  page: Int!
+  limit: Int!
+  totalPages: Int!
+  hasNext: Boolean!
+  hasPrev: Boolean!
+}
+
+type CharacterPaginatedData {
+  items: [Character!]!
+  pagination: PaginationMeta!
+}
+
+type CharacterResponse {
+  success: Boolean!
+  message: String!
+  data: CharacterPaginatedData!
+}
+
+type Query {
+  characters(pagination: PaginationInput = {page: 1, limit: 20}, filter: CharacterFilterInput): CharacterResponse!
+}
+
+input PaginationInput {
+  page: Int! = 1
+  limit: Int! = 20
+}
+
+input CharacterFilterInput {
+  status: [Status!]
+  gender: [Gender!]
+  search: String
+}
