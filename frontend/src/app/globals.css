@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-card: #ffffff;
+  --color-bg-input: #ffffff;
+  --color-bg-hover: #f3f4f6;
+  --color-bg-badge: #f3f4f6;
+  --color-bg-active: #111827;
+
+  --color-border: #d1d5db;
+  --color-border-hover: #111827;
+  --color-border-focus: #111827;
+
+  --color-text: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-text-placeholder: #9ca3af;
+  --color-text-inverse: #ffffff;
+
+  --color-status-alive: #16a34a;
+  --color-status-alive-bg: #f0fdf4;
+  --color-status-alive-border: #86efac;
+  --color-status-dead: #dc2626;
+  --color-status-dead-bg: #fef2f2;
+  --color-status-dead-border: #fca5a5;
+  --color-status-unknown: #6b7280;
+  --color-status-unknown-bg: #f9fafb;
+  --color-status-unknown-border: #d1d5db;
+
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+::selection {
+  background: #e5e7eb;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  margin: 0;
+}
+
+input,
+select,
+button,
+textarea {
+  font-family: inherit;
+  border-radius: 0;
+}
